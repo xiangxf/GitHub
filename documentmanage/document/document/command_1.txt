@@ -1,0 +1,10 @@
+gcc -o client client.c udpcli.c dnsQuery.c dns.c domain.c
+gcc -o server server.c udpser.c tcp.c dnsRecord.c serverFun.c dns.c dnsQuery.c domain.c
+
+local     sudo ./server -i 127.0.0.1 -p 53 -d dnsLocal.data -t 0
+top       sudo ./server -i 127.0.0.2 -p 53 -d dnsTop.data -t 1 -r
+cn	  sudo ./server -i 127.0.0.3 -p 53 -d dnsTopMiddle_cn.data -t 1
+us	  sudo ./server -i 127.0.0.4 -p 53 -d dnsTopMiddle_us.data -t 1
+
+	  ./client -n "中国的北邮" -D -n 中国的教育的四川大学
+          ./client -n "中国的北邮" -D -r 
